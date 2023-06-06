@@ -7,6 +7,15 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Lab 9</title>
 
+  <script src="https://cdn.trackjs.com/agent/v3/latest/t.js"></script>
+  <script>
+    window.TrackJS && TrackJS.install({
+      token: "ec75b7308ab04d81854f90a94b5e618d"
+      // for more configuration options, see https://docs.trackjs.com
+    });
+  </script>
+
+
   <style>
     button {
       margin: 3px;
@@ -102,6 +111,90 @@
 
     // Start your code here
     // You may move this JS to another file if you wish
+    errorBtns[0].addEventListener('click', () => {
+      console.log("Console Log Demo");
+    });
+    errorBtns[1].addEventListener('click', () => {
+      console.error("Console Error Demo");
+    });
+    errorBtns[2].addEventListener('click', () => {
+      console.count("Count Button");
+    });
+    errorBtns[3].addEventListener('click', () => {
+      console.warn("Console Warn Button");
+    });
+    const errorMsg = "the # is not even";
+    errorBtns[4].addEventListener('click', () => {
+      for (let number = 3; number <= 5; number++) {
+        console.log(`the # is ${number}`);
+        console.assert(number % 2 === 0, "%o", { number, errorMsg });
+      }
+    });
+    errorBtns[5].addEventListener('click', () => {
+      console.clear();
+    });
+    errorBtns[6].addEventListener('click', () => {
+      console.dir(errorBtns[6]);
+    });
+    errorBtns[7].addEventListener('click', () => {
+      console.dirxml(errorBtns[7]);
+    });
+    errorBtns[8].addEventListener('click', () => {
+      console.group();
+    });
+    errorBtns[9].addEventListener('click', () => {
+      console.groupEnd();
+    });
+    errorBtns[10].addEventListener('click', () => {
+      console.table(
+        [
+          { "id": "12345", "state": "CA" },
+          { "id": "54321", "state": "TX" }
+        ]
+      );
+    });
+    errorBtns[11].addEventListener('click', () => {
+      console.time("Timer Button");
+    });
+    errorBtns[12].addEventListener('click', () => {
+      console.timeEnd("Timer Button");
+    });
+
+    errorBtns[14].addEventListener('click', () => {
+      throw new Error("Global Error");
+    });
+
+    class CustomError extends Error {
+      constructor(message) {
+        super(message);
+        this.name = "CustomError";
+      }
+    }
+
+    try {
+      const firstNumVal = parseFloat(firstNum);
+      const secondNumVal = parseFloat(secondNum);
+      if (isNaN(firstNumVal)) {
+        throw new CustomError("firstNumVal isNaN");
+      }
+      if (isNaN(secondNumVal)) {
+        throw new CustomError("secondNumVal isNaN");
+      }
+    }
+    catch (error) {
+      if (error instanceof CustomError) {
+        console.error("CustomError");
+      }
+      console.error(error);
+    }
+
+    finally {
+      console.log("done");
+    }
+
+    TrackJS.track('Testing TrackJS!');
+                        
+                        
   </script>
 </body>
 
