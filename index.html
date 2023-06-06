@@ -193,6 +193,10 @@
     }
 
     TrackJS.track('Testing TrackJS!');
+
+    window.addEventListener('error', () => {
+      console.warn("We have an error!");
+    })
                         
                         
   </script>
